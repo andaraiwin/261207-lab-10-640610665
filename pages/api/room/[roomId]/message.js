@@ -11,7 +11,7 @@ export default function roomIdMessageRoute(req, res) {
     if (roomIdx === -1)
       return res.status(404).json({ ok: false, masssage: "Invalid room id" });
 
-    return res.json({ ok: true, rooms: rooms[roomIdx].messages });
+    return res.json({ ok: true, messages: rooms[roomIdx].messages });
   } else if (req.method === "POST") {
     const rooms = readDB();
 
@@ -22,6 +22,8 @@ export default function roomIdMessageRoute(req, res) {
 
     //read request body
     const text = req.body.text;
+
+    //Debug typeof text
     // console.log(typeof text);
 
     if (typeof text !== "string") {
